@@ -39,7 +39,7 @@ class DeepLearning(MycroftSkill):
 	#Stop the conversation between Mycroft and the user
 	def stop_conversation(self):
 		self.conversation = False
-		self.speak('Leave')
+		self.speak('Bye bye')
 
 	#If there is a talk, stop it by calling the corresponding function
 	def stop(self, message = None):
@@ -71,6 +71,7 @@ class TalkTest:
 	def __init__(self, cmd, dir):
 		self.cmd = cmd
 		self.dir = dir
+		self.data_path = join(self.dir, 'name.txt')
 
 	def is_in_voc(self, talk):
 		path = join(self.dir, 'vocab/en-us/')
@@ -83,21 +84,47 @@ class TalkTest:
 					return (line, name)
 		return None
 
+	def personalise_response(self, resp):
+		if resp.find("{n}") >= 0:
+			if os.path.exists(self.data_path):
+				file = open(self.data_path, 'r')
+				name = file.read()
+				file.close()
+				resp_tab = re.split("{n}", resp)
+				response = resp_tab[0] + name + resp_tab[1]
+				return response
+			else:		
+				resp_tab = re.split("{n}", resp)
+				response = resp_tab[0] + resp_tab[1]
+				return response
+		return resp
+
 	#Test the match of the vocab/what is said
 	#Return the response associated.
 	def response_talk(self, talk):
 		voc = self.is_in_voc(talk)
 		if voc is not None:
 			voc_path = voc[1] + '.dialog'
+			if voc[1] == "Name.voc":
+				self.save_name(talk, voc[0])
 			resp_path = join('dialog/en-us/', voc_path)
 			path_dialog = join(self.dir, resp_path)
-			LOG.info(path_dialog)
 			if os.path.exists(path_dialog):
 				file = open(path_dialog, 'r')
 				content = file.read()
 				file.close()
-				return content 
+				content_pers = self.personalise_response(content)
+				return content_pers 
 		return None
+
+	def save_name(self, talk, vocab):
+		if talk is not None:
+			result = re.split(vocab.lower(), talk.lower())
+			name = re.split('\W+', result[1])
+			name_cap = name[1].capitalize()
+			file = open(self.data_path, 'w+')
+			file.write(name_cap)
+			file.close()
 
 	#Return the given text by adding the name is one is found.
 	#Return the help text if asked.
