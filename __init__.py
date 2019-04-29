@@ -73,6 +73,8 @@ class TalkTest:
 		self.dir = dir
 		self.data_path = join(self.dir, 'name.txt')
 
+	#test if the utterance match with one of the sentence in the voc file
+	#if there is a match, return the name of the file and the line 
 	def is_in_voc(self, talk):
 		path = join(self.dir, 'vocab/en-us/')
 		for name in os.listdir(path):
@@ -80,10 +82,12 @@ class TalkTest:
 			lines = f.readlines()
 			f.close()
 			for line in lines:
-				if talk.lower() in line.lower() or line.lower() in talk.lower():
+				LOG.info(line)
+				if len(talk) >= 5 and talk.lower() in line.lower() or line.lower() in talk.lower():
 					return (line, name)
 		return None
 
+	#If there is a symbol in the dialog file, Microft change it to the appropriate personal data 
 	def personalise_response(self, resp):
 		if resp.find("{n}") >= 0:
 			if os.path.exists(self.data_path):
@@ -117,6 +121,7 @@ class TalkTest:
 				return content_pers 
 		return None
 
+	#Save name in a file
 	def save_name(self, talk, vocab):
 		if talk is not None:
 			result = re.split(vocab.lower(), talk.lower())
