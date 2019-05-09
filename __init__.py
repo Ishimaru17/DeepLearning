@@ -9,6 +9,11 @@ from mycroft import MycroftSkill, intent_handler
 from mycroft.util.log import LOG
 from adapt.intent import IntentBuilder
 from os.path import join, exists
+from importlib import reload
+
+HOME_DIR = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(HOME_DIR)
+import mia_deep
 
 
 #command that activate the response to a speech.
@@ -32,7 +37,8 @@ class DeepLearning(MycroftSkill):
 	def handle_talk_first__intent(self, message):
 		if not self.talk:
 			self.talk = True
-			time.sleep(0.1)
+			time.sleep(0.3)
+		LOG.info(HOME_DIR)
 		self.speak_dialog('InitialTalk.voc')
 		self.conversation = True
 
@@ -138,6 +144,9 @@ class TalkTest:
 		talkative = self.response_talk(talk)
 		if talkative is not None:
 			return talkative
+		else: 
+			evaluateInput(encoder, decoder, searcher, voc, talk)
+			LOG.info("Ok no bug here")
 		return talk
 
 
