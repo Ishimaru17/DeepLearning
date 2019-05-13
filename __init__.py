@@ -14,6 +14,7 @@ from importlib import reload
 HOME_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(HOME_DIR)
 import mia_deep
+import tesst
 
 
 #command that activate the response to a speech.
@@ -38,7 +39,6 @@ class DeepLearning(MycroftSkill):
 		if not self.talk:
 			self.talk = True
 			time.sleep(0.3)
-		LOG.info(HOME_DIR)
 		self.speak_dialog('InitialTalk.voc')
 		self.conversation = True
 
@@ -68,10 +68,6 @@ class DeepLearning(MycroftSkill):
 		return False
 
 
-
-
-
-
 #Class of the different talking.
 class TalkTest:
 	def __init__(self, cmd, dir):
@@ -88,7 +84,6 @@ class TalkTest:
 			lines = f.readlines()
 			f.close()
 			for line in lines:
-				LOG.info(line)
 				if len(talk) >= 5 and talk.lower() in line.lower() or line.lower() in talk.lower():
 					return (line, name)
 		return None
@@ -126,7 +121,7 @@ class TalkTest:
 				content_pers = self.personalise_response(content)
 				return content_pers 
 		return None
-
+  
 	#Save name in a file
 	def save_name(self, talk, vocab):
 		if talk is not None:
@@ -137,16 +132,15 @@ class TalkTest:
 			file.write(name_cap)
 			file.close()
 
-	#Return the given text by adding the name is one is found.
-	#Return the help text if asked.
+	#Return the the predefinite text if that match a voc file
+	#Return the deep response if none text is found.
 	def talk_to_you(self):
 		talk = self.cmd
 		talkative = self.response_talk(talk)
 		if talkative is not None:
 			return talkative
 		else: 
-			evaluateInput(encoder, decoder, searcher, voc, talk)
-			LOG.info("Ok no bug here")
+			return mia_deep.get_response(talk)
 		return talk
 
 

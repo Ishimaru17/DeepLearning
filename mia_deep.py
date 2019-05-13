@@ -617,10 +617,13 @@ decoder.eval()
 # Initialize search module
 searcher = GreedySearchDecoder(encoder, decoder)
 
-
+"""
 talk = "what is lung cancer?"
 print(evaluateInput(encoder, decoder, searcher, voc, talk))
 error = "are you a robot mia?"
 print(evaluateInput(encoder, decoder, searcher, voc, error))
+"""
 
 
+def input(talk):
+    return evaluateInput(encoder, decoder, searcher, voc, talk)
