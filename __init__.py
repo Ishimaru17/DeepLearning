@@ -14,7 +14,6 @@ from importlib import reload
 HOME_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(HOME_DIR)
 import mia_deep
-import tesst
 
 
 #command that activate the response to a speech.
