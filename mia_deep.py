@@ -606,10 +606,6 @@ trainIters(model_name, voc, pairs, encoder, decoder, encoder_optimizer, decoder_
            embedding, encoder_n_layers, decoder_n_layers, save_dir, n_iteration, batch_size,
            print_every, save_every, clip, corpus_name, loadFilename)
 
-
-
-
-
 # Set dropout layers to eval mode
 encoder.eval()
 decoder.eval()
@@ -617,13 +613,6 @@ decoder.eval()
 # Initialize search module
 searcher = GreedySearchDecoder(encoder, decoder)
 
-"""
-talk = "what is lung cancer?"
-print(evaluateInput(encoder, decoder, searcher, voc, talk))
-error = "are you a robot mia?"
-print(evaluateInput(encoder, decoder, searcher, voc, error))
-"""
-
-
+#Get the response fro the talk
 def input(talk):
     return evaluateInput(encoder, decoder, searcher, voc, talk)

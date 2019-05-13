@@ -139,8 +139,7 @@ class TalkTest:
 		if talkative is not None:
 			return talkative
 		else: 
-			return mia_deep.get_response(talk)
-		return talk
+			return mia_deep.input(talk)
 
 
 #create the skill and load it in mycroft when it is launch. 
