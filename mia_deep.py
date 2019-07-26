@@ -505,14 +505,15 @@ def evaluate(encoder, decoder, searcher, voc, sentence, max_length=MAX_LENGTH):
 def reduce(output_dic):
     output = " ".join(output_dic)
     output_sentences = re.split('[.]', output)
-    sentence_prev = ""
+    sentences_prev = []
     out = ""
     for sentence in output_sentences:
         if len(sentence) >= 2:
-            if sentence == sentence_prev:
-                out += '.'
-                return out
-            sentence_prev = sentence
+            for sentence_prev in sentences_prev:
+                if sentence == sentence_prev:
+                    out += '.'
+                    return out
+            sentences_prev.append(sentence)
         if len(out) == 0:
             out += sentence
         else:
