@@ -1,0 +1,318 @@
+[
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "eName",
+				"type": "string"
+			},
+			{
+				"name": "ePhone",
+				"type": "string"
+			},
+			{
+				"name": "eAddr",
+				"type": "string"
+			}
+		],
+		"name": "setEmergencyCase",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "medicationName",
+				"type": "string"
+			}
+		],
+		"name": "removeMedication",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getInsurance",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "medicationName",
+				"type": "string"
+			},
+			{
+				"name": "dosage",
+				"type": "string"
+			}
+		],
+		"name": "addMedication",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getPrimaryPersonalInfo",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "gchickenPox",
+				"type": "bool"
+			},
+			{
+				"name": "gmeasles",
+				"type": "bool"
+			},
+			{
+				"name": "ghepatitsb",
+				"type": "bool"
+			},
+			{
+				"name": "gmedicalProblems",
+				"type": "string"
+			},
+			{
+				"name": "gallergies",
+				"type": "string"
+			}
+		],
+		"name": "setGeneralMedicalHistory",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getSecondaryPersonalInfo",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "hevent",
+				"type": "string"
+			}
+		],
+		"name": "addHistorical",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "pweight",
+				"type": "uint256"
+			},
+			{
+				"name": "pheight",
+				"type": "uint256"
+			},
+			{
+				"name": "pname",
+				"type": "string"
+			},
+			{
+				"name": "psurname",
+				"type": "string"
+			},
+			{
+				"name": "paddr",
+				"type": "string"
+			},
+			{
+				"name": "pphone",
+				"type": "string"
+			},
+			{
+				"name": "pgender",
+				"type": "string"
+			},
+			{
+				"name": "pbirthday",
+				"type": "string"
+			},
+			{
+				"name": "psmoker",
+				"type": "bool"
+			},
+			{
+				"name": "pdrink",
+				"type": "string"
+			},
+			{
+				"name": "pblood",
+				"type": "string"
+			}
+		],
+		"name": "setAllPersonnalInfo",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getEmergencyCase",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "getGeneralMedicalHistory",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "iName",
+				"type": "string"
+			},
+			{
+				"name": "iNumber",
+				"type": "string"
+			},
+			{
+				"name": "iAddress",
+				"type": "string"
+			},
+			{
+				"name": "iExpiracy",
+				"type": "string"
+			}
+		],
+		"name": "setInsurance",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]

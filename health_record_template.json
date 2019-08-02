@@ -1,0 +1,110 @@
+{
+	"Personal information": {
+		"Name": "John",
+		"Surname": "Smith",
+		"Gender": "Male",
+		"Birth date": "01/01/1980",
+		"Weight": 60,
+		"Height": 170,
+		"Address": "1 Cork road, Waterford",
+		"Phone number": "+353000000000",
+		"Habits": {
+			"Smoker": "Yes",
+			"Drinker": "Occasionally"
+		},
+		"Blood type": "O-"
+	},
+	"In case of Emergency": {
+		"Name": "John Smith Jr.",
+		"Phone number": "+353000000001",
+		"Address": "2 Cork road, Waterford"
+	},
+	"General Medical History": {
+		"Chicken pox": "Immune",
+		"Measles": "Not immune",
+		"Hepatitis B vaccination": "Yes",
+		"List of any medical problems": "asthma, seizures, headaches",
+		"List of allergies": "dairy products, nuts"
+	},
+	"Current regular medication": {
+		"Medication": {
+			"Name": "Acetaminophen",
+			"When to take it": "One pill once a day."
+		},
+		"Medication": {
+			"Name": "Amoxicillin",
+			"When to take it": "Two pills twice a day, one in the morning and one in the evening, during meals."
+		}
+	},
+	"Medical insurance": {
+		"Name": "The Insurance",
+		"Policy Number": "000000000",
+		"Address": "3 Cork road, Waterford",
+		"Expiracy date": "31/12/2019"
+	},
+	"Historical past": {
+		"Event": {
+			"Date": "05/05/2005",
+			"Surgery": "Cataract surgery",
+			"Doctor information": {
+				"Name": "Robert Smith",
+				"Specialisation": "Ophthalmologist"
+			},
+			"Medication": {
+				"Name": "Amoxicillin",
+				"When to take it": "On pill a day."
+			},
+			"Medical institute": "UPMC", 
+			"Comments": "Everithing's OK."
+		},
+		"Event": {
+			"Date": "06/05/2005",
+			"Visit": "Inspection visit",
+			"Doctor information": {
+				"Name": "Bill Smith",
+				"Specialisation": "Heart surgeon"
+			},
+			"Medical institute": "UPMC",
+			"Comments": "Inspection visit after the surgery."
+		},
+		"Event": {
+			"Date": "10/05/2005",
+			"Vaccination": "Hepatitis B",
+			"Doctor information": {
+				"Name": "Franck Smith",
+				"Specialisation": "General practitioner"
+			},
+			"Medical institute": "UPMC"
+		},
+		"Event": {
+			"Date": "15/05/2005",
+			"Major illness": "Stroke",
+			"Doctor information": {
+				"Name": "Brian Smith",
+				"Specialisation": "Brain surgeon"
+			},
+			"Medication": {
+				"Name": "Amoxicillin",
+				"When to take it": "On pill a day."
+			},
+			"Medication": {
+				"Name": "Acetaminophen",
+				"When to take it": "On pill a day."
+			},
+			"Medical institute": "UPMC",
+			"Comments": "Stroke in the morning, following by surgery. No sequelae."
+		}
+	},
+	"To come": {
+		"Event": {
+			"Date": "01/07/2019",
+			"Visit": "Inspection visit",
+			"Doctor information": {
+				"Name": "Franck Smith",
+				"Specialisation": "General practitioner"
+			},
+			"Medical institute": "UPMC",
+			"Comments": "Annual inspection visit."
+		}
+	}
+}

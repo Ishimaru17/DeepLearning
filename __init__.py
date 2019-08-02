@@ -14,6 +14,8 @@ from importlib import reload
 HOME_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(HOME_DIR)
 import mia_deep
+import blockchain
+
 
 
 #command that activate the response to a speech.
@@ -87,6 +89,7 @@ class TalkTest:
 					return (line, name)
 		return None
 
+
 	#If there is a symbol in the dialog file, Microft change it to the appropriate personal data 
 	def personalise_response(self, resp):
 		if resp.find("{n}") >= 0:
@@ -102,6 +105,9 @@ class TalkTest:
 				response = resp_tab[0] + resp_tab[1]
 				return response
 		return resp
+
+	def is_personal_info(self, talk):
+		return blockchain.personal_information('marion', talk)
 
 	#Test the match of the vocab/what is said
 	#Return the response associated.
@@ -119,6 +125,8 @@ class TalkTest:
 				file.close()
 				content_pers = self.personalise_response(content)
 				return content_pers 
+		if "information" in talk.lower():
+			return self.is_personal_info(talk)
 		return None
   
 	#Save name in a file
