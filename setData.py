@@ -1,18 +1,21 @@
 from web3 import Web3, IPCProvider, HTTPProvider
+from eth_account import Account
 import json
 import time
 
 
 
-#w3 = Web3(IPCProvider("../../../../home/ishimaru/Documents/WIT/All/mia/slackMia/Test/geth.ipc"))
+w3 = Web3(IPCProvider("../../../../home/ishimaru/Documents/WIT/All/mia/slackMia/Test/geth.ipc"))
 
-w3 = Web3(HTTPProvider('https://mainnet.infura.io/v3/94df8f865dae4697a14fb488c0f558aa'))
+#w3 = Web3(HTTPProvider('https://ropsten.infura.io/v3/94df8f865dae4697a14fb488c0f558aa'))
+
+print(w3.eth.accounts)
+
 
 if (w3.isConnected()):
 	print("it's connected")
 else:
 	print("not connected")
-
 
 account = w3.personal.newAccount('marion')
 w3.eth.defaultAccount = w3.eth.accounts[0]
@@ -21,7 +24,7 @@ w3.personal.unlockAccount(w3.eth.accounts[0], 'marion')
 w3.miner.start(2)
 while(w3.eth.getBalance(w3.eth.accounts[0])<=10000000):
 	time.sleep(3)
-w3.miner.stop()
+
 
 with open ("./api.json") as f:
 	info_json = json.load(f)
@@ -118,8 +121,3 @@ w3.eth.waitForTransactionReceipt(tx_hash)
 
 print("All the setting are ok!")
 
-
-
-
-
-#Account "0x30e31d74f4f5f748680f740af0af73bd1a0ffa1c"
