@@ -113,19 +113,19 @@ class TalkTest:
 
 	def isImmune(self, immu):
 		if immu:
-			return "Immune"
+			return "you are immune to "
 		else: 
-			return "Not Immune"
+			return "you are not immune to"
 
 	def isVaccinate(self, vacc):
 		if vacc:
-			return "Yes"
+			return "you are vaccinate for "
 		else:
-			return "No"
+			return "you are not vaccinate for "
 
 	def is_personal_info(self, talk):
 		password = "marion"
-
+		text = talk.lower()
 
 		if(w3.isConnected()):
 			LOG.info("Connection successed")
@@ -138,9 +138,6 @@ class TalkTest:
 		user_accounts[id_user] = account
 		w3.personal.unlockAccount(account, password)
 
-		LOG.info("Account created")
-
-		
 		with open ("../../All/mia/slackMia/api.json") as f:
 			info_json = json.load(f)
 
@@ -148,10 +145,33 @@ class TalkTest:
 
 		contract = w3.eth.contract(address = '0xa495BD57133d4d4adC2D4C665A0bF7cdfADeaD1d', abi = abi)
 
-		LOG.info("Contract check")
-		name, surname, gender, date, blood = contract.call().getPrimaryPersonalInfo()
+		if("personal" in text):
+			name, surname, gender, date, blood = contract.call().getPrimaryPersonalInfo()
+			height, weight, address, smoker, drinker = contract.call().getSecondaryPersonalInfo()
+			if smoker:
+				smokeText = "you are a smoker"
+			else:
+				smokeText = "you are not a smoker"
 
-		response = name + " " + surname + " you are a " + gender + " your are born the " + date + " and your blood type is " + blood
+			response = name + " " + surname + " you are a " + gender + " your are born the " + date + " and your blood type is " + blood + " you measure " + str(height) + " cm and you weigh " + str(weight) + "kg you live at " + address + " " + smokeText + " and you drink " + drinker
+		elif("emergency" in text):
+			name, phone, address = contract.call().getEmergencyCase()
+			response = "The name of your emergency contact is " + name + " his her phone number is " + phone + " and his her address is " + address
+		elif("general" in text and ("medical" in text or "health" in text)):
+			chickenPox, measles, hepatitisB, medicalProblems, allergies = contract.call().getGeneralMedicalHistory()
+
+			chickenPoxText = self.isImmune(chickenPox)
+			measlesText = self.isImmune(measles)
+			hepatitisBText = self.isVaccinate(hepatitisB)
+
+			response = chickenPoxText + " chicken pox " + measlesText + " measles " + hepatitisBText + " hepatitis B your medical problems are " + medicalProblems + " and you are allergic to " + allergies
+
+		elif("insurance" in text):
+			name, policy, address, expiracy = contract.call().getInsurance()
+			response = "Your insurance name is " + name + " which is locate in " +  address + " your policy number is " + policy + " its expire the " + expiracy
+
+		else:
+			response = "I'm sorry, I can't catch the information that you need, can you repeat it another way please."
 
 		return response
 
