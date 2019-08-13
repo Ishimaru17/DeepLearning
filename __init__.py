@@ -3,6 +3,7 @@ import subprocess
 import re
 import sys
 import os
+import json
 import time
 
 from mycroft import MycroftSkill, intent_handler
@@ -10,13 +11,16 @@ from mycroft.util.log import LOG
 from adapt.intent import IntentBuilder
 from os.path import join, exists
 from importlib import reload
+from web3 import Web3
 
 HOME_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(HOME_DIR)
 import mia_deep
 import blockchain
 
-
+user_accounts= {'<@ULE6JH5BN>' : '0xF95c934512C8b46b0DDe21Cc6B059dd60d374AB7'}
+w3 = Web3(Web3.IPCProvider("../../All/mia/slackMia/Test/geth.ipc"))
+LOG.info(os.getcwd())	
 
 #command that activate the response to a speech.
 def cmd(talk, dir):
@@ -32,7 +36,8 @@ class DeepLearning(MycroftSkill):
 		self.talk = None
 		self.conversation = False
 		self.path = self._dir
-	
+
+		
 	#Function calls whenever a line of InitialTalk is said
 	#This function began the conversation between Mycroft and the user.
 	@intent_handler(IntentBuilder("TalkFirstIntent").require("InitialTalk").build())
@@ -106,8 +111,49 @@ class TalkTest:
 				return response
 		return resp
 
+	def isImmune(self, immu):
+		if immu:
+			return "Immune"
+		else: 
+			return "Not Immune"
+
+	def isVaccinate(self, vacc):
+		if vacc:
+			return "Yes"
+		else:
+			return "No"
+
 	def is_personal_info(self, talk):
-		return blockchain.personal_information('marion', talk)
+		password = "marion"
+
+
+		if(w3.isConnected()):
+			LOG.info("Connection successed")
+		else:
+			LOG.info("Connection failed")
+
+		id_user = "patient1"		
+		
+		account = w3.personal.newAccount(password)
+		user_accounts[id_user] = account
+		w3.personal.unlockAccount(account, password)
+
+		LOG.info("Account created")
+
+		
+		with open ("../../All/mia/slackMia/api.json") as f:
+			info_json = json.load(f)
+
+		abi = info_json
+
+		contract = w3.eth.contract(address = '0xa495BD57133d4d4adC2D4C665A0bF7cdfADeaD1d', abi = abi)
+
+		LOG.info("Contract check")
+		name, surname, gender, date, blood = contract.call().getPrimaryPersonalInfo()
+
+		response = name + " " + surname + " you are a " + gender + " your are born the " + date + " and your blood type is " + blood
+
+		return response
 
 	#Test the match of the vocab/what is said
 	#Return the response associated.
