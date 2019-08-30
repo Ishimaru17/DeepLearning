@@ -26,6 +26,7 @@ HOME_DIR = os.path.dirname(os.path.abspath(__file__))
 USE_CUDA = torch.cuda.is_available()
 device = torch.device("cuda" if USE_CUDA else "cpu")
 
+#Get all the data from the database
 corpus_name = "medecine_data"
 data = HOME_DIR + "/data"
 corpus = os.path.join( data, corpus_name)
@@ -133,7 +134,7 @@ save_dir = os.path.join(data, "save")
 voc, pairs = loadPrepareData(corpus, corpus_name, datafile, save_dir)
 
 
-#TODO change the minimum of word count to something bigger
+#The minimum count can be change to improve the algorithmes
 MIN_COUNT = 1   # Minimum word count threshold for trimming
 
 def trimRareWords(voc, pairs, MIN_COUNT):
@@ -216,7 +217,7 @@ def batch2TrainData(voc, pair_batch):
 
 
 # Example for validation
-#TODO change the size of the batch
+#The size of the batch can be change to improve the algorithm
 small_batch_size = 5
 batches = batch2TrainData(voc, [random.choice(pairs) for _ in range(small_batch_size)])
 input_variable, lengths, target_variable, mask, max_target_len = batches
@@ -549,6 +550,7 @@ batch_size = 64
 
 # Set checkpoint to load from; set to None if starting from scratch
 
+#Path to the model which was trained
 loadFilename = HOME_DIR + "/training.pt"
 
 checkpoint_iter = 300
@@ -586,7 +588,7 @@ teacher_forcing_ratio = 1.0
 learning_rate = 0.0001
 decoder_learning_ratio = 5.0
 
-#TODO change the number of iterations
+#The number of iterations can be change to improve the algorithmes
 n_iteration = 300
 print_every = 1
 save_every = 300
@@ -614,6 +616,6 @@ decoder.eval()
 # Initialize search module
 searcher = GreedySearchDecoder(encoder, decoder)
 
-#Get the response fro the talk
+#Get the response from the talk
 def input(talk):
     return evaluateInput(encoder, decoder, searcher, voc, talk)
